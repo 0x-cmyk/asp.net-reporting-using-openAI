@@ -42,7 +42,7 @@ IChatClient chatClient = new AzureOpenAIClient(
     new Uri(settings.AzureOpenAIEndpoint),
     new System.ClientModel.ApiKeyCredential(settings.AzureOpenAIKey)).AsChatClient(settings.DeploymentName);
 
-builder.Services.AddChatClient(config => config.Use(chatClient));
+builder.Services.AddChatClient(chatClient);
 builder.Services.AddDevExpressAI((config) => {
     config.AddWebReportingAIIntegration(cfg =>
         cfg.SummarizationMode = SummarizationMode.Abstractive);
