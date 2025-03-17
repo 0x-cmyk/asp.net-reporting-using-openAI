@@ -1,4 +1,3 @@
-using Azure;
 using Azure.AI.OpenAI;
 using DevExpress.AIIntegration;
 using DevExpress.AspNetCore;
@@ -42,7 +41,7 @@ IChatClient chatClient = new AzureOpenAIClient(
     new Uri(settings.AzureOpenAIEndpoint),
     new System.ClientModel.ApiKeyCredential(settings.AzureOpenAIKey)).AsChatClient(settings.DeploymentName);
 
-builder.Services.AddChatClient(chatClient);
+builder.Services.AddSingleton(chatClient);
 builder.Services.AddDevExpressAI((config) => {
     config.AddWebReportingAIIntegration(cfg =>
         cfg.SummarizationMode = SummarizationMode.Abstractive);

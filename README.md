@@ -15,7 +15,7 @@ These actions are also available in context menu when you select report content.
 
 The following is an image of the application interface. As you can see, users can process the entire document, individual pages, or selected content. 
 
-![AI-Powered Summarize and Translate Buttons](web-reporting-ai-enhancements.png)
+![Web Document Viewer - AI-Powered Summarize and Translate Buttons](web-reporting-ai-enhancements.png)
 
 ## Implementation Details
 
@@ -28,9 +28,9 @@ Add the following NuGet packages:
 - `Microsoft.Extensions.AI.OpenAI`, `Azure.AI.OpenAI`, `Azure.Identity` or `Microsoft.Extensions.AI.Ollama` based on your AI service preferences. This project uses Azure OpenAI. The remainder of this document describes steps related to this package.
 
 > [!IMPORTANT]
-> We use version **9.3.0-preview.1.25161.3** of the _Microsoft.Extensions.AI.*_ libraries in our source code. We do not guarantee compatibility or correct operation with higher versions.
+> In v24.2.6+, we use version **9.3.0-preview.1.25161.3** of the _Microsoft.Extensions.AI.*_ libraries in our source code. We do not guarantee compatibility or correct operation with higher versions.
 
-For the list of supported AI services and the corresponding prerequisites, refer to *Supported AI Services* in the following help topic: [AI-powered Extensions for DevExpress Reporting](https://docs.devexpress.com/XtraReports/405211/ai-powered-functionality/ai-for-devexpress-reporting?v=24.2#supported-ai-services
+For the list of supported AI services and the corresponding prerequisites, refer to *Supported AI Services* in the following help topic: [AI-powered Extensions for DevExpress Reporting](https://docs.devexpress.com/XtraReports/405211/ai-powered-functionality/ai-for-devexpress-reporting#supported-ai-services
 ). 
 
 ### Add Personal Keys
@@ -82,7 +82,7 @@ IChatClient chatClient = new AzureOpenAIClient(
     new Uri(settings.AzureOpenAIEndpoint),
     new System.ClientModel.ApiKeyCredential(settings.AzureOpenAIKey)).AsChatClient(settings.DeploymentName);
 
-builder.Services.AddChatClient(config => config.Use(chatClient));
+builder.Services..AddSingleton(chatClient);
 builder.Services.AddDevExpressAI((config) => {
     config.AddWebReportingAIIntegration(cfg =>
         cfg.SummarizationMode = SummarizationMode.Abstractive);
@@ -125,8 +125,8 @@ Open `DocumentViewer.cshtml` and create a JavaScript function that enables AI se
 
 ## Documentation
 
-- [AI-powered Extensions for DevExpress Reporting](https://docs.devexpress.com/XtraReports/405211/ai-powered-functionality/ai-for-devexpress-reporting?v=24.2)
-- [Summarize and Translate Reports in the Web Document Viewer](https://docs.devexpress.com/XtraReports/405196/ai-powered-functionality/summarize-translate-in-web-viewer?v=24.2)
+- [AI-powered Extensions for DevExpress Reporting](https://docs.devexpress.com/XtraReports/405211/ai-powered-functionality/ai-for-devexpress-reporting)
+- [Summarize and Translate Reports in the Web Document Viewer](https://docs.devexpress.com/XtraReports/405196/ai-powered-functionality/summarize-translate-in-web-viewer)
 
 ## More Examples
 
