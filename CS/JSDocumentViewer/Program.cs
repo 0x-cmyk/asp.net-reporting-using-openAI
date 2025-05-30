@@ -35,7 +35,8 @@ builder.Services.ConfigureReportingServices(configurator => {
 
 var settings = builder.Configuration.GetSection("AISettings").Get<AISettings>();
 //To use Ollama
-//IChatClient client = new OllamaChatClient(new Uri("http://localhost:11434/api/chat", "phi3.5:latest"));
+// IChatClient client = new OllamaApiClient(new Uri("http://localhost:11434/"), "MODEL_NAME");
+
 
 IChatClient chatClient = new AzureOpenAIClient(
     new Uri(settings.AzureOpenAIEndpoint),
